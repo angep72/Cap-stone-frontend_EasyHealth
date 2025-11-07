@@ -152,8 +152,7 @@ For containerized deployments, copy the `dist/` directory into a lightweight web
 
 Backend Deployed version: https://easy-health-backend.onrender.com/api-docs/
 --
-Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.
-onrender.com/
+Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.onrender.com
 --
 
 9. Below is the git hub link to Backend endpoint;
