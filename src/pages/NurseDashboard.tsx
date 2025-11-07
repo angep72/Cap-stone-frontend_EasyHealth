@@ -382,7 +382,6 @@ export function NurseDashboard() {
   };
 
   const pendingAppointments = appointments.filter((a) => ['booked', 'pending'].includes(a.status));
-  const approvedAppointments = appointments.filter((a) => a.status === 'approved');
   const doctorVisitAppointments = appointments.filter((a) => ['approved', 'completed'].includes(a.status));
   const completedAppointments = appointments.filter((a) => a.status === 'completed');
   const highRiskPatients = appointments
