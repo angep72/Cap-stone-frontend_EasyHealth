@@ -1,9 +1,3 @@
-Backend Deployed version: https://easy-health-backend.onrender.com/api/
----
-Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.
-onrender.com/
-
-
 EasyHealth Frontend
 ===================
 
@@ -157,6 +151,11 @@ For containerized deployments, copy the `dist/` directory into a lightweight web
 
 ---
 
+Backend Deployed version: https://easy-health-backend.onrender.com/api/
+--
+Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.
+onrender.com/
+--
 9. Useful references
 --------------------
 
