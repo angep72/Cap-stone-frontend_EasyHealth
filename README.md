@@ -161,3 +161,13 @@ Backend gihublink: https://github.com/angep72/Easy-health-backend.git
 
 Demo Video: https://vimeo.com/1134749889?share=copy&fl=cl&fe=ci
 
+10.  Dummy Data to use 
+| Role                  | Full Name            | Email                   | Example Password |
+| --------------------- | -------------------- | ----------------------- | ---------------- |
+| 🛠️ **Admin**         | System Administrator | `admin@easyhealth.com`  | `123456`         |
+| 👨‍⚕️ **Doctor**      | Alain Mucyo          | `alain@gmail.com`       | `123456`         |
+| 👩‍⚕️ **Nurse**       | Aline Mimi           | `masakanurse@gmail.com` | `123456`         |
+| 🧪 **Lab Technician** | MasakaLab            | `masakalab@gmail.com`   | `123456`         |
+| 💊 **Pharmacist**     | Imena Pharmacy       | `imena@gmail.com`       | `123456`         |
+| 🧍 **Patient**        | Intime Molly         | `mimi@gmail.com`        | `123456`         |
+
