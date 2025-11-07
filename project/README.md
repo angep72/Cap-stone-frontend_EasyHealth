@@ -151,12 +151,18 @@ For containerized deployments, copy the `dist/` directory into a lightweight web
 
 ---
 
-Backend Deployed version: https://easy-health-backend.onrender.com/api/
---
-Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.
-onrender.com/
---
-
 9. Useful references
-Demo Video: https://vimeo.com/1134749889?share=copy&fl=cl&fe=ci
+--------------------
+
+- Vite docs: <https://vitejs.dev/guide/>
+- React docs: <https://react.dev/>
+- Tailwind CSS docs: <https://tailwindcss.com/docs>
+- Recharts docs (if you re-enable analytics): <https://recharts.org/en-US/>
+
+---
+
+License
+-------
+
+This frontend is part of the EasyHealth demonstration project and is provided for educational purposes.
 
