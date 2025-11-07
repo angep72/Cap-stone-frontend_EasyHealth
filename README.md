@@ -22,8 +22,7 @@ Prerequisites
 ------------------
 
 ```bash
-git clone <your fork or repo url>
-cd draftfronted/project
+git clone https://github.com/angep72/Cap-stone-frontend_EasyHealth.git
 npm install
 ```
 
@@ -84,7 +83,7 @@ Build + preview combo:
 
 ```bash
 npm run build
-npm run preview   # served at http://localhost:4173 by default
+npm run preview   
 ```
 
 ---
@@ -143,7 +142,7 @@ Logs are printed to the browser console and terminal (especially for data loadin
    npm run build
    ```
 
-2. Serve the `dist/` folder with any static host (Vercel, Netlify, Nginx, S3 + CloudFront, etc.).
+2. Serve the `dist/` folder with any static host ( Netlify).
 
 3. Set `VITE_API_URL` (or host-specific environment variable) to point at your production backend before building.
 
@@ -151,7 +150,7 @@ For containerized deployments, copy the `dist/` directory into a lightweight web
 
 ---
 
-Backend Deployed version: https://easy-health-backend.onrender.com/api/
+Backend Deployed version: https://easy-health-backend.onrender.com/api-docs/
 --
 Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.
 onrender.com/
