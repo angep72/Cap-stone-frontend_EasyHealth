@@ -1,5 +1,8 @@
-Link to deployed version : https://cap-stone-frontend-easyhealth.onrender.com/
-Backend: https://easy-health-backend.onrender.com/api/
+Backend Deployed version: https://easy-health-backend.onrender.com/api/
+---
+Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.
+onrender.com/
+
 
 EasyHealth Frontend
 ===================
