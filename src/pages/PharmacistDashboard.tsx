@@ -5,6 +5,7 @@ import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Modal } from '../components/ui/Modal';
+import { Loader } from '../components/ui/Loader';
 import { Clock, CheckCircle, XCircle, Package, DollarSign } from 'lucide-react';
 import { PrescriptionPricingModal } from '../components/pharmacist/PrescriptionPricingModal';
 
@@ -30,13 +31,14 @@ export function PharmacistDashboard() {
   const [pharmacyId, setPharmacyId] = useState<string | null>(null);
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [selectedPricingPrescription, setSelectedPricingPrescription] = useState<any>(null);
+  const [loadingRequests, setLoadingRequests] = useState(true);
 
   useEffect(() => {
     fetchPharmacy();
   }, [profile?._id]);
 
   useEffect(() => {
-    fetchRequests();
+    fetchRequests(true);
   }, [pharmacyId]);
 
   const fetchPharmacy = async () => {
@@ -53,13 +55,27 @@ export function PharmacistDashboard() {
     }
   };
 
-  const fetchRequests = async () => {
+  const fetchRequests = async (showLoader = false) => {
+    if (!pharmacyId) {
+      setRequests([]);
+      setLoadingRequests(false);
+      return;
+    }
+
+    if (showLoader) {
+      setLoadingRequests(true);
+    }
+
     try {
       const data = await api.getPharmacyRequests();
       setRequests(data as any);
     } catch (error) {
       console.error('Error fetching pharmacy requests:', error);
       setRequests([]);
+    } finally {
+      if (showLoader) {
+        setLoadingRequests(false);
+      }
     }
   };
 
@@ -169,6 +185,14 @@ export function PharmacistDashboard() {
   });
   const readyToDispense = requests.filter((r) => getPrescriptionStatus(r) === 'paid');
   const completedRequests = requests.filter((r) => getPrescriptionStatus(r) === 'completed');
+
+  if (loadingRequests && requests.length === 0) {
+    return (
+      <DashboardLayout>
+        <Loader label="Loading prescription requests..." fullHeight className="py-16" />
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>

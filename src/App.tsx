@@ -8,6 +8,7 @@ import { DoctorDashboard } from './pages/DoctorDashboard';
 import { NurseDashboard } from './pages/NurseDashboard';
 import { LabTechnicianDashboard } from './pages/LabTechnicianDashboard';
 import { PharmacistDashboard } from './pages/PharmacistDashboard';
+import { Loader } from './components/ui/Loader';
 
 function AppContent() {
   const { user, profile, loading } = useAuth();
@@ -16,10 +17,7 @@ function AppContent() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
+        <Loader label="Loading your workspace..." fullHeight />
       </div>
     );
   }

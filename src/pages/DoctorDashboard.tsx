@@ -20,6 +20,7 @@ import {
 } from 'recharts';
 import { ConsultationModal } from '../components/doctor/ConsultationModal';
 import { PrescriptionBuilder } from '../components/doctor/PrescriptionBuilder';
+import { Loader } from '../components/ui/Loader';
 
 interface DoctorProfile {
   _id: string;
@@ -637,7 +638,7 @@ export function DoctorDashboard() {
 
         <Card title="Approved Appointments - Ready for Consultation">
           {loading ? (
-            <div className="text-center py-8 text-gray-600">Loading appointments...</div>
+            <Loader label="Loading appointments..." fullHeight />
           ) : appointments.filter((a) => a.status === 'approved').length === 0 ? (
             <p className="text-center text-gray-600 py-8">No approved appointments</p>
           ) : (
@@ -878,6 +879,7 @@ export function DoctorDashboard() {
             setShowPrescriptionBuilder(false);
             setSelectedLabResult(null);
             fetchLabResults();
+            fetchDoctorPrescriptions();
           }}
         />
       )}

@@ -6,6 +6,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Modal } from '../components/ui/Modal';
 import { Input } from '../components/ui/Input';
+import { Loader } from '../components/ui/Loader';
 import { Clock, CheckCircle, XCircle, Activity } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -71,6 +72,7 @@ export function NurseDashboard() {
   const [temperature, setTemperature] = useState('');
   const [rejectionReason, setRejectionReason] = useState('');
   const [loading, setLoading] = useState(false);
+  const [appointmentsLoading, setAppointmentsLoading] = useState(true);
 
   useEffect(() => {
     fetchNurseProfile();
@@ -183,6 +185,7 @@ export function NurseDashboard() {
       if (!nurse) {
         console.warn('No nurse profile found for user:', profile._id);
         setNurseProfile(null);
+        setAppointmentsLoading(false);
         return;
       }
 
@@ -190,6 +193,7 @@ export function NurseDashboard() {
     } catch (error) {
       console.error('Error fetching nurse profile:', error);
       setNurseProfile(null);
+      setAppointmentsLoading(false);
     }
   };
 
@@ -204,6 +208,7 @@ export function NurseDashboard() {
 
       if (!hospitalId) {
         setAppointments([]);
+        setAppointmentsLoading(false);
         return;
       }
 
@@ -260,6 +265,7 @@ export function NurseDashboard() {
       console.error('Error fetching appointments:', error);
       setAppointments([]);
     }
+    setAppointmentsLoading(false);
   };
 
   const handleApprove = (appointment: Appointment) => {
@@ -452,6 +458,9 @@ export function NurseDashboard() {
 
   return (
     <DashboardLayout>
+      {appointmentsLoading && appointments.length === 0 ? (
+        <Loader label="Loading nurse dashboard..." fullHeight className="py-16" />
+      ) : (
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Nurse Dashboard</h1>
@@ -719,6 +728,7 @@ export function NurseDashboard() {
           )}
         </Card>
       </div>
+      )}
 
       <Modal
         isOpen={showVitalsModal}

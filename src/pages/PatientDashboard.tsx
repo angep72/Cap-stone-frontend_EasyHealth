@@ -5,6 +5,7 @@ import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Modal } from '../components/ui/Modal';
+import { Loader } from '../components/ui/Loader';
 import { Calendar, Building2, Pill, FlaskRound, CreditCard, Clock, MapPin, Shield, Settings } from 'lucide-react';
 import { BookAppointmentModal } from '../components/patient/BookAppointmentModal';
 import { PharmacySelectionModal } from '../components/patient/PharmacySelectionModal';
@@ -373,7 +374,7 @@ export function PatientDashboard() {
         </div>
 
         {hasActiveAppointment && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-emerald-600">
             You already have an appointment in progress. Please complete it before booking another.
           </p>
         )}
@@ -498,7 +499,7 @@ export function PatientDashboard() {
 
         <Card title="Recent Appointments">
           {loading ? (
-            <div className="text-center py-8 text-gray-600">Loading appointments...</div>
+            <Loader label="Loading appointments..." fullHeight />
           ) : appointments.length === 0 ? (
             <div className="text-center py-8">
               <Calendar size={48} className="mx-auto text-gray-400 mb-3" />

@@ -6,6 +6,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Modal } from '../components/ui/Modal';
 import { Select } from '../components/ui/Select';
+import { Loader } from '../components/ui/Loader';
 import { FlaskRound, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface LabTestRequest {
@@ -30,6 +31,7 @@ export function LabTechnicianDashboard() {
   const [resultData, setResultData] = useState('');
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loadingRequests, setLoadingRequests] = useState(true);
 
   useEffect(() => {
     fetchRequests();
@@ -37,10 +39,14 @@ export function LabTechnicianDashboard() {
 
   const fetchRequests = async () => {
     try {
+      setLoadingRequests(true);
       const data = await api.getLabTestRequests();
       setRequests(data as any);
     } catch (error) {
       console.error('Error fetching lab test requests:', error);
+      setRequests([]);
+    } finally {
+      setLoadingRequests(false);
     }
   };
 
@@ -171,6 +177,14 @@ export function LabTechnicianDashboard() {
     { value: 'positive', label: 'Positive' },
     { value: 'inconclusive', label: 'Inconclusive' },
   ];
+
+  if (loadingRequests && requests.length === 0) {
+    return (
+      <DashboardLayout>
+        <Loader label="Loading lab requests..." fullHeight className="py-16" />
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>

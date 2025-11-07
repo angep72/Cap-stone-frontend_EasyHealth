@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import { api } from '../../lib/api';
 import { Modal } from '../ui/Modal';
 import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-import { Select } from '../ui/Select';
-import { FlaskRound, Pill, Save, FileText } from 'lucide-react';
+
+import { FlaskRound, Pill, Save } from 'lucide-react';
 import { PrescriptionBuilder } from './PrescriptionBuilder';
 
 interface Appointment {
