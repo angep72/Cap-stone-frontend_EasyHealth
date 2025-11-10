@@ -170,7 +170,7 @@ Use these example credentials to log in and test different roles in the system.
 
 | Role                  | Full Name            | Email                   | Example Password |
 | --------------------- | -------------------- | ----------------------- | ---------------- |
-| 🛠️ **Admin**          | System Administrator | `admin@easyhealth.com`  | `123456`         |
+| 🛠️ **Admin**          | System Administrator | `admin@easyhealth.com`  | `admin123`         |
 | 👨‍⚕️ **Doctor**         | Alain Mucyo          | `alain@gmail.com`       | `123456`         |
 | 👩‍⚕️ **Nurse**          | Aline Mimi           | `masakanurse@gmail.com` | `123456`         |
 | 🧪 **Lab Technician** | MasakaLab            | `masakalab@gmail.com`   | `123456`         |
