@@ -159,8 +159,6 @@ Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.onrend
 
 Backend gihublink: https://github.com/angep72/Easy-health-backend.git
 
-Demo Video: https://vimeo.com/1134749889?share=copy&fl=cl&fe=ci
-
 10.  Dummy Data to use while Testing
 
 ---

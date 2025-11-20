@@ -137,3 +137,8 @@ The components that were not implemented were restricted by external factors suc
 ![Unit Testing](image-5.png);
 
 ---
+Backend Deployed version: https://easy-health-backend.onrender.com/api-docs/
+--
+Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.onrender.com
+--
+Demo Video: https://vimeo.com/1138991174
