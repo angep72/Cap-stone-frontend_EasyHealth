@@ -365,7 +365,7 @@ export function BookAppointmentModal({ isOpen, onClose }: BookAppointmentModalPr
           />
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <Button type="button" variant="secondary" onClick={onClose} fullWidth>
             Cancel
           </Button>

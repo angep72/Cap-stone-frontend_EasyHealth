@@ -22,7 +22,8 @@ Prerequisites
 ------------------
 
 ```bash
-git clone https://github.com/angep72/Cap-stone-frontend_EasyHealth.git
+git clone <your fork or repo url>
+cd draftfronted/project
 npm install
 ```
 
@@ -83,7 +84,7 @@ Build + preview combo:
 
 ```bash
 npm run build
-npm run preview   
+npm run preview   # served at http://localhost:4173 by default
 ```
 
 ---
@@ -142,7 +143,7 @@ Logs are printed to the browser console and terminal (especially for data loadin
    npm run build
    ```
 
-2. Serve the `dist/` folder with any static host ( Netlify).
+2. Serve the `dist/` folder with any static host (Vercel, Netlify, Nginx, S3 + CloudFront, etc.).
 
 3. Set `VITE_API_URL` (or host-specific environment variable) to point at your production backend before building.
 
@@ -150,29 +151,18 @@ For containerized deployments, copy the `dist/` directory into a lightweight web
 
 ---
 
-Backend Deployed version: https://easy-health-backend.onrender.com/api-docs/
---
-Link to Frontend deployed version : https://cap-stone-frontend-easyhealth.onrender.com
---
+9. Useful references
+--------------------
 
-9. Below is the git hub link to Backend endpoint;
-
-Backend gihublink: https://github.com/angep72/Easy-health-backend.git
-
-10.  Dummy Data to use while Testing
+- Vite docs: <https://vitejs.dev/guide/>
+- React docs: <https://react.dev/>
+- Tailwind CSS docs: <https://tailwindcss.com/docs>
+- Recharts docs (if you re-enable analytics): <https://recharts.org/en-US/>
 
 ---
 
+License
+-------
 
-Use these example credentials to log in and test different roles in the system.
-
-| Role                  | Full Name            | Email                   | Example Password |
-| --------------------- | -------------------- | ----------------------- | ---------------- |
-| 🛠️ **Admin**          | System Administrator | `admin@easyhealth.com`  | `admin123`         |
-| 👨‍⚕️ **Doctor**         | Alain Mucyo          | `alain@gmail.com`       | `123456`         |
-| 👩‍⚕️ **Nurse**          | Aline Mimi           | `masakanurse@gmail.com` | `123456`         |
-| 🧪 **Lab Technician** | MasakaLab            | `masakalab@gmail.com`   | `123456`         |
-| 💊 **Pharmacist**     | Imena Pharmacy       | `imena@gmail.com`       | `123456`         |
-| 🧍 **Patient**        | Intime Molly         | `mimi@gmail.com`        | `123456`         |
-
+This frontend is part of the EasyHealth demonstration project and is provided for educational purposes.
 

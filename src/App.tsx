@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { LandingPage } from './pages/LandingPage';
 import { Login } from './components/auth/Login';
 import { Register } from './components/auth/Register';
 import { PatientDashboard } from './pages/PatientDashboard';
@@ -10,9 +11,11 @@ import { LabTechnicianDashboard } from './pages/LabTechnicianDashboard';
 import { PharmacistDashboard } from './pages/PharmacistDashboard';
 import { Loader } from './components/ui/Loader';
 
+type AuthView = 'landing' | 'login' | 'register';
+
 function AppContent() {
   const { user, profile, loading } = useAuth();
-  const [showRegister, setShowRegister] = useState(false);
+  const [authView, setAuthView] = useState<AuthView>('landing');
 
   if (loading) {
     return (
@@ -23,10 +26,29 @@ function AppContent() {
   }
 
   if (!user || !profile) {
-    return showRegister ? (
-      <Register onToggleLogin={() => setShowRegister(false)} />
-    ) : (
-      <Login onToggleRegister={() => setShowRegister(true)} />
+    if (authView === 'landing') {
+      return (
+        <LandingPage
+          onNavigateToLogin={() => setAuthView('login')}
+          onNavigateToRegister={() => setAuthView('register')}
+        />
+      );
+    }
+    
+    if (authView === 'register') {
+      return (
+        <Register
+          onToggleLogin={() => setAuthView('login')}
+          onNavigateToLanding={() => setAuthView('landing')}
+        />
+      );
+    }
+    
+    return (
+      <Login
+        onToggleRegister={() => setAuthView('register')}
+        onNavigateToLanding={() => setAuthView('landing')}
+      />
     );
   }
 

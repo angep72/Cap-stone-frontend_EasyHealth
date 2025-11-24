@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
-import { Building2 } from 'lucide-react';
+import { Building2, ArrowLeft } from 'lucide-react';
 
 interface LoginProps {
   onToggleRegister: () => void;
+  onNavigateToLanding?: () => void;
 }
 
-export function Login({ onToggleRegister }: LoginProps) {
+export function Login({ onToggleRegister, onNavigateToLanding }: LoginProps) {
   const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,6 +45,15 @@ export function Login({ onToggleRegister }: LoginProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
+        {onNavigateToLanding && (
+          <button
+            onClick={onNavigateToLanding}
+            className="flex items-center text-gray-600 hover:text-emerald-600 mb-4 transition-colors"
+          >
+            <ArrowLeft size={20} className="mr-2" />
+            <span className="text-sm font-medium">Back to Home</span>
+          </button>
+        )}
         <div className="flex items-center justify-center mb-8">
           <div className="bg-emerald-600 p-3 rounded-full">
             <Building2 size={32} className="text-white" />

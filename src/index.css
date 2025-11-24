@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom scrollbar hiding for mobile */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Ensure proper text wrapping on all screens */
+@layer base {
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}

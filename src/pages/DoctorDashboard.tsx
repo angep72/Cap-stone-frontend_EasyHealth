@@ -525,8 +525,8 @@ export function DoctorDashboard() {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Doctor Dashboard</h1>
-          <p className="text-gray-600 mt-1">Manage appointments and consultations</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Doctor Dashboard</h1>
+          <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage appointments and consultations</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -558,65 +558,76 @@ export function DoctorDashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card title="Daily Trends (Last 30 Days)">
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={chartData.dailyConsultations}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" interval={3} tick={{ fontSize: 11 }} />
-                <YAxis allowDecimals={false} />
-                <Tooltip
-                  contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
-                />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="consultations"
-                  stroke="#2563eb"
-                  strokeWidth={2}
-                  dot={false}
-                  name="Consultations"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="prescriptions"
-                  stroke="#a855f7"
-                  strokeWidth={2}
-                  dot={false}
-                  name="Prescriptions"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="labTests"
-                  stroke="#10b981"
-                  strokeWidth={2}
-                  dot={false}
-                  name="Lab Tests"
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-x-auto">
+              <ResponsiveContainer width="100%" height={300} minHeight={250}>
+                <LineChart data={chartData.dailyConsultations} margin={{ top: 5, right: 10, left: 0, bottom: 40 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis 
+                    dataKey="date" 
+                    interval="preserveStartEnd"
+                    tick={{ fontSize: 10 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 10 }} />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px', fontSize: '12px' }}
+                  />
+                  <Legend wrapperStyle={{ fontSize: '12px' }} />
+                  <Line
+                    type="monotone"
+                    dataKey="consultations"
+                    stroke="#2563eb"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Consultations"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="prescriptions"
+                    stroke="#a855f7"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Prescriptions"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="labTests"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                    dot={false}
+                    name="Lab Tests"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </Card>
 
           <Card title="Weekly Summary (Last 8 Weeks)">
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData.weeklyConsultations}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="week"
-                  tick={{ fontSize: 11 }}
-                  interval={0}
-                  angle={-25}
-                  textAnchor="end"
-                  height={80}
-                />
-                <YAxis allowDecimals={false} />
-                <Tooltip
-                  contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
-                />
-                <Legend />
-                <Bar dataKey="consultations" fill="#2563eb" name="Consultations" radius={[6, 6, 0, 0]} />
-                <Bar dataKey="prescriptions" fill="#a855f7" name="Prescriptions" radius={[6, 6, 0, 0]} />
-                <Bar dataKey="labTests" fill="#10b981" name="Lab Tests" radius={[6, 6, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="w-full overflow-x-auto">
+              <ResponsiveContainer width="100%" height={300} minHeight={250}>
+                <BarChart data={chartData.weeklyConsultations} margin={{ top: 5, right: 10, left: 0, bottom: 80 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="week"
+                    tick={{ fontSize: 9 }}
+                    interval={0}
+                    angle={-45}
+                    textAnchor="end"
+                    height={100}
+                  />
+                  <YAxis allowDecimals={false} tick={{ fontSize: 10 }} />
+                  <Tooltip
+                    contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px', fontSize: '12px' }}
+                  />
+                  <Legend wrapperStyle={{ fontSize: '12px' }} />
+                  <Bar dataKey="consultations" fill="#2563eb" name="Consultations" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="prescriptions" fill="#a855f7" name="Prescriptions" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="labTests" fill="#10b981" name="Lab Tests" radius={[6, 6, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
             {weeklyAverages && (
               <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                 <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">

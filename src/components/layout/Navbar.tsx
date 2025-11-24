@@ -138,15 +138,15 @@ export function Navbar() {
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-3">
-            <div className="bg-emerald-600 p-2 rounded-lg">
-              <Building2 size={24} className="text-white" />
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14 sm:h-16">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="bg-emerald-600 p-1.5 sm:p-2 rounded-lg flex-shrink-0">
+              <Building2 size={20} className="sm:w-6 sm:h-6 text-white" />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">EasyHealth</h1>
-              <p className="text-xs text-gray-600">{getRoleLabel()} Portal</p>
+            <div className="min-w-0">
+              <h1 className="text-lg sm:text-xl font-bold text-gray-900 truncate">EasyHealth</h1>
+              <p className="text-xs text-gray-600 truncate">{getRoleLabel()} Portal</p>
             </div>
           </div>
 
@@ -165,7 +165,7 @@ export function Navbar() {
               </button>
 
               {showNotifications && (
-                <div className="absolute right-0 mt-2 w-96 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-50">
                   <div className="p-4 border-b border-gray-200 flex items-center justify-between">
                     <h3 className="font-semibold text-gray-900">Notifications</h3>
                     {unreadCount > 0 && (
@@ -225,11 +225,11 @@ export function Navbar() {
               )}
             </div>
 
-            <div className="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-lg">
-              <div className="text-emerald-600">{getRoleIcon()}</div>
-              <div>
-                <p className="text-sm font-medium text-gray-900">{profile?.full_name}</p>
-                <p className="text-xs text-gray-600">{profile?.email}</p>
+            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-gray-50 rounded-lg min-w-0">
+              <div className="text-emerald-600 flex-shrink-0">{getRoleIcon()}</div>
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate">{profile?.full_name}</p>
+                <p className="text-xs text-gray-600 truncate hidden sm:block">{profile?.email}</p>
               </div>
             </div>
 
@@ -324,11 +324,11 @@ export function Navbar() {
               </div>
             )}
 
-            <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <div className="text-emerald-600">{getRoleIcon()}</div>
-              <div>
-                <p className="text-sm font-medium text-gray-900">{profile?.full_name}</p>
-                <p className="text-xs text-gray-600">{profile?.email}</p>
+            <div className="flex items-center gap-2 sm:gap-3 p-3 bg-gray-50 rounded-lg">
+              <div className="text-emerald-600 flex-shrink-0">{getRoleIcon()}</div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-gray-900 break-words">{profile?.full_name}</p>
+                <p className="text-xs text-gray-600 break-words">{profile?.email}</p>
               </div>
             </div>
             <Button variant="danger" size="sm" fullWidth onClick={signOut}>

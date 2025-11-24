@@ -215,58 +215,67 @@ export function ManageDoctors() {
         {doctors.length === 0 ? (
           <p className="text-center text-gray-600 py-8">No doctors added yet</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Name</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Hospital</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Department</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Specialization</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">License</th>
-                  <th className="px-4 py-3 text-right text-sm font-medium text-gray-700">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {doctors.map((doctor) => {
-                  // Handle populated relations
-                  const user = typeof doctor.user_id === 'object' ? doctor.user_id : null;
-                  const hospital = typeof doctor.hospital_id === 'object' ? doctor.hospital_id : hospitals.find(h => h._id === doctor.hospital_id);
-                  const department = typeof doctor.department_id === 'object' ? doctor.department_id : departments.find(d => d._id === doctor.department_id);
-                  
-                  return (
-                    <tr key={doctor._id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3">
-                        {user ? (
-                          <>
-                            <p className="text-sm font-medium text-gray-900">{user.full_name}</p>
-                            <p className="text-xs text-gray-600">{user.email}</p>
-                          </>
-                        ) : (
-                          <p className="text-sm text-gray-500">Loading...</p>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-900">{hospital?.name || '-'}</td>
-                      <td className="px-4 py-3 text-sm text-gray-900">{department?.name || '-'}</td>
-                      <td className="px-4 py-3 text-sm text-gray-600">
-                        {doctor.specialization || '-'}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">{doctor.license_number}</td>
-                      <td className="px-4 py-3 text-sm text-right">
-                        <div className="flex gap-2 justify-end">
-                          <Button size="sm" variant="secondary" onClick={() => handleEdit(doctor)}>
-                            <Edit size={14} />
-                          </Button>
-                          <Button size="sm" variant="danger" onClick={() => handleDelete(doctor._id)}>
-                            <Trash2 size={14} />
-                          </Button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <div className="inline-block min-w-full align-middle">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Name</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden md:table-cell">Hospital</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden lg:table-cell">Department</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden lg:table-cell">Specialization</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden xl:table-cell">License</th>
+                    <th className="px-3 sm:px-4 py-3 text-right text-xs sm:text-sm font-medium text-gray-700">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {doctors.map((doctor) => {
+                    // Handle populated relations
+                    const user = typeof doctor.user_id === 'object' ? doctor.user_id : null;
+                    const hospital = typeof doctor.hospital_id === 'object' ? doctor.hospital_id : hospitals.find(h => h._id === doctor.hospital_id);
+                    const department = typeof doctor.department_id === 'object' ? doctor.department_id : departments.find(d => d._id === doctor.department_id);
+                    
+                    return (
+                      <tr key={doctor._id} className="hover:bg-gray-50">
+                        <td className="px-3 sm:px-4 py-3">
+                          {user ? (
+                            <>
+                              <p className="text-xs sm:text-sm font-medium text-gray-900 break-words">{user.full_name}</p>
+                              <p className="text-xs text-gray-600 break-words">{user.email}</p>
+                              <div className="md:hidden mt-1 space-y-0.5">
+                                <p className="text-xs text-gray-500"><span className="font-medium">Hospital:</span> {hospital?.name || '-'}</p>
+                                <p className="text-xs text-gray-500"><span className="font-medium">Dept:</span> {department?.name || '-'}</p>
+                                {doctor.specialization && (
+                                  <p className="text-xs text-gray-500"><span className="font-medium">Specialization:</span> {doctor.specialization}</p>
+                                )}
+                              </div>
+                            </>
+                          ) : (
+                            <p className="text-xs sm:text-sm text-gray-500">Loading...</p>
+                          )}
+                        </td>
+                        <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 hidden md:table-cell break-words">{hospital?.name || '-'}</td>
+                        <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-900 hidden lg:table-cell break-words">{department?.name || '-'}</td>
+                        <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-600 hidden lg:table-cell break-words">
+                          {doctor.specialization || '-'}
+                        </td>
+                        <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-600 hidden xl:table-cell">{doctor.license_number}</td>
+                        <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-right">
+                          <div className="flex gap-1 sm:gap-2 justify-end">
+                            <Button size="sm" variant="secondary" onClick={() => handleEdit(doctor)} className="p-1.5 sm:p-2">
+                              <Edit size={14} />
+                            </Button>
+                            <Button size="sm" variant="danger" onClick={() => handleDelete(doctor._id)} className="p-1.5 sm:p-2">
+                              <Trash2 size={14} />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </Card>
@@ -332,7 +341,7 @@ export function ManageDoctors() {
             </p>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Button
               type="button"
               variant="secondary"

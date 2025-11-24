@@ -163,52 +163,62 @@ export function ManageUsers() {
         {users.length === 0 ? (
           <p className="text-center text-gray-600 py-8">No staff users created yet</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Name</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Email</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Role</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Phone</th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Created</th>
-                  <th className="px-4 py-3 text-right text-sm font-medium text-gray-700">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {users.map((user) => (
-                  <tr key={user._id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3 text-sm font-medium text-gray-900">
-                      {user.full_name}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600">{user.email}</td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(
-                          user.role
-                        )}`}
-                      >
-                        {getRoleLabel(user.role)}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600">{user.phone || '-'}</td>
-                    <td className="px-4 py-3 text-sm text-gray-600">
-                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : '-'}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-right">
-                      <Button
-                        size="sm"
-                        variant="danger"
-                        onClick={() => handleDelete(user._id, user.email)}
-                        title="Delete user (feature may need backend endpoint)"
-                      >
-                        <Trash2 size={14} />
-                      </Button>
-                    </td>
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <div className="inline-block min-w-full align-middle">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Name</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden sm:table-cell">Email</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Role</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden md:table-cell">Phone</th>
+                    <th className="px-3 sm:px-4 py-3 text-left text-xs sm:text-sm font-medium text-gray-700 hidden lg:table-cell">Created</th>
+                    <th className="px-3 sm:px-4 py-3 text-right text-xs sm:text-sm font-medium text-gray-700">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {users.map((user) => (
+                    <tr key={user._id} className="hover:bg-gray-50">
+                      <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium text-gray-900">
+                        <div className="flex flex-col">
+                          <span className="break-words">{user.full_name}</span>
+                          <span className="text-gray-500 sm:hidden text-xs">{user.email}</span>
+                        </div>
+                      </td>
+                      <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-600 hidden sm:table-cell break-words">
+                        {user.email}
+                      </td>
+                      <td className="px-3 sm:px-4 py-3">
+                        <span
+                          className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(
+                            user.role
+                          )}`}
+                        >
+                          {getRoleLabel(user.role)}
+                        </span>
+                      </td>
+                      <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-600 hidden md:table-cell">
+                        {user.phone || '-'}
+                      </td>
+                      <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-gray-600 hidden lg:table-cell">
+                        {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : '-'}
+                      </td>
+                      <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-right">
+                        <Button
+                          size="sm"
+                          variant="danger"
+                          onClick={() => handleDelete(user._id, user.email)}
+                          title="Delete user"
+                          className="p-1.5 sm:p-2"
+                        >
+                          <Trash2 size={14} />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </Card>
@@ -296,7 +306,7 @@ export function ManageUsers() {
             The user should change this password after their first login.
           </p>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Button
               type="button"
               variant="secondary"

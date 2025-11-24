@@ -358,16 +358,16 @@ export function PatientDashboard() {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 break-words">
               Welcome, {profile?.full_name}
             </h1>
-            <p className="text-gray-600 mt-1">
+            <p className="text-gray-600 mt-1 text-sm sm:text-base">
               Manage your healthcare appointments and records
             </p>
           </div>
-          <Button onClick={() => setShowBooking(true)} disabled={hasActiveAppointment}>
+          <Button onClick={() => setShowBooking(true)} disabled={hasActiveAppointment} className="w-full sm:w-auto">
             <Calendar size={20} className="mr-2" />
             Book Appointment
           </Button>
@@ -381,36 +381,37 @@ export function PatientDashboard() {
 
         {insurance && (
           <Card className="bg-gradient-to-r from-blue-50 to-emerald-50 border-2 border-blue-200">
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex items-start gap-4 flex-1">
-                <div className="p-3 bg-blue-100 rounded-lg">
-                  <Shield size={24} className="text-blue-600" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
+                <div className="p-2 sm:p-3 bg-blue-100 rounded-lg flex-shrink-0">
+                  <Shield size={20} className="sm:w-6 sm:h-6 text-blue-600" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
                     Insurance Coverage Active
                   </h3>
-                  <p className="text-sm text-gray-700 font-medium mb-1">
+                  <p className="text-sm text-gray-700 font-medium mb-1 break-words">
                     {insurance.name}
                   </p>
-                  <p className="text-xs text-gray-600 mb-2">
+                  <p className="text-xs text-gray-600 mb-2 break-words">
                     {insurance.description}
                   </p>
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-emerald-100 text-emerald-800">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                    <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold bg-emerald-100 text-emerald-800 whitespace-nowrap">
                       {insurance.coverage_percentage}% Coverage
                     </span>
-                    <span className="text-sm text-gray-600">
+                    <span className="text-xs sm:text-sm text-gray-600">
                       You pay only {100 - insurance.coverage_percentage}% of all costs
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 w-full sm:w-auto">
                 <Button
                   size="sm"
                   variant="secondary"
                   onClick={() => setShowInsuranceModal(true)}
+                  className="flex-1 sm:flex-none"
                 >
                   <Settings size={14} className="mr-1" />
                   Change
@@ -419,6 +420,7 @@ export function PatientDashboard() {
                   size="sm"
                   variant="danger"
                   onClick={handleRemoveInsurance}
+                  className="flex-1 sm:flex-none"
                 >
                   Remove
                 </Button>
@@ -429,16 +431,17 @@ export function PatientDashboard() {
 
         {!insurance && (
           <Card className="bg-yellow-50 border-2 border-yellow-200">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3 flex-1">
-                <Shield size={20} className="text-yellow-600" />
-                <p className="text-sm text-yellow-800">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                <Shield size={20} className="text-yellow-600 flex-shrink-0 mt-0.5 sm:mt-0" />
+                <p className="text-sm text-yellow-800 break-words">
                   <strong>No Insurance:</strong> You will pay full price for all medical services. Consider adding insurance to reduce your costs.
                 </p>
               </div>
               <Button
                 size="sm"
                 onClick={() => setShowInsuranceModal(true)}
+                className="w-full sm:w-auto"
               >
                 <Shield size={14} className="mr-1" />
                 Add Insurance
@@ -517,14 +520,14 @@ export function PatientDashboard() {
               {appointments.map((apt) => (
                 <div
                   key={apt._id}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className="p-3 bg-white rounded-lg">
-                      <Building2 size={24} className="text-emerald-600" />
+                  <div className="flex items-start sm:items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                    <div className="p-2 sm:p-3 bg-white rounded-lg flex-shrink-0">
+                      <Building2 size={20} className="sm:w-6 sm:h-6 text-emerald-600" />
                     </div>
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-900">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-gray-900 break-words">
                         Dr. {
                           typeof apt.doctor_id === 'object' &&
                           typeof apt.doctor_id.user_id === 'object'
@@ -532,11 +535,11 @@ export function PatientDashboard() {
                             : 'Doctor'
                         }
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 break-words">
                         {typeof apt.department_id === 'object' ? apt.department_id.name : 'Department'} - {typeof apt.hospital_id === 'object' ? apt.hospital_id.name : 'Hospital'}
                       </p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Clock size={14} className="text-gray-500" />
+                      <div className="flex items-center gap-2 mt-1 flex-wrap">
+                        <Clock size={14} className="text-gray-500 flex-shrink-0" />
                         <p className="text-sm text-gray-600">
                           {new Date(apt.appointment_date).toLocaleDateString()} at {apt.appointment_time}
                         </p>
@@ -560,11 +563,12 @@ export function PatientDashboard() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-wrap w-full sm:w-auto">
                     {apt.status === 'approved' && !hasPayment(apt) && (
                       <Button
                         size="sm"
                         onClick={() => handlePayNow(apt)}
+                        className="flex-1 sm:flex-none"
                       >
                         <CreditCard size={14} className="mr-1" />
                         Pay Now
@@ -576,7 +580,7 @@ export function PatientDashboard() {
                       </span>
                     )}
                     <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                      className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${getStatusColor(
                         apt.status
                       )}`}
                     >
@@ -595,20 +599,20 @@ export function PatientDashboard() {
               {labTests.map((test) => (
                 <div
                   key={test._id}
-                  className="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-lg"
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg"
                 >
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className="p-3 bg-white rounded-lg">
-                      <FlaskRound size={24} className="text-blue-600" />
+                  <div className="flex items-start sm:items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                    <div className="p-2 sm:p-3 bg-white rounded-lg flex-shrink-0">
+                      <FlaskRound size={20} className="sm:w-6 sm:h-6 text-blue-600" />
                     </div>
-                    <div className="flex-1">
-                      <p className="font-medium text-gray-900">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-gray-900 break-words text-sm sm:text-base">
                         {typeof test.lab_test_template_id === 'object' ? test.lab_test_template_id.name : 'Lab Test'}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 break-words">
                         {typeof test.lab_test_template_id === 'object' ? test.lab_test_template_id.description : ''}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-gray-500 mt-1 break-words">
                         Diagnosis: {typeof test.consultation_id === 'object' ? test.consultation_id.diagnosis : 'N/A'}
                       </p>
                       <div className="mt-1">
@@ -630,18 +634,19 @@ export function PatientDashboard() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
                     {!hasLabTestPayment(test) && (
                       <Button
                         size="sm"
                         onClick={() => handlePayLabTest(test)}
+                        className="w-full sm:w-auto"
                       >
                         <CreditCard size={14} className="mr-1" />
                         Pay Now
                       </Button>
                     )}
                     {hasLabTestPayment(test) && (
-                      <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded">
+                      <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded w-full sm:w-auto text-center sm:text-left">
                         Payment Processing
                       </span>
                     )}
@@ -660,19 +665,19 @@ export function PatientDashboard() {
                 return (
                 <div
                   key={prescription._id}
-                  className={`flex items-center justify-between p-4 rounded-lg border-2 ${
+                  className={`flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-4 rounded-lg border-2 ${
                     isPending 
                       ? 'bg-emerald-50 border-emerald-300 shadow-md' 
                       : 'bg-purple-50 border-purple-200'
                   }`}
                 >
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className="p-3 bg-white rounded-lg">
-                      <Pill size={24} className="text-purple-600" />
+                  <div className="flex items-start sm:items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                    <div className="p-2 sm:p-3 bg-white rounded-lg flex-shrink-0">
+                      <Pill size={20} className="sm:w-6 sm:h-6 text-purple-600" />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <p className="font-medium text-gray-900">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="font-medium text-gray-900 break-words text-sm sm:text-base">
                           Prescription from Dr. {
                             typeof prescription.consultation_id === 'object' && 
                             typeof prescription.consultation_id.doctor_id === 'object' &&
@@ -682,21 +687,21 @@ export function PatientDashboard() {
                           }
                         </p>
                         {isPending && (
-                          <span className="px-2 py-1 text-xs font-bold bg-emerald-500 text-white rounded-full animate-pulse">
+                          <span className="px-2 py-1 text-xs font-bold bg-emerald-500 text-white rounded-full animate-pulse whitespace-nowrap">
                             NEW
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-gray-500 mt-1 break-words">
                         Diagnosis: {typeof prescription.consultation_id === 'object' ? prescription.consultation_id.diagnosis : 'N/A'}
                       </p>
                     <div className="mt-2">
                       {/* Each prescription now represents one medication */}
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 break-words">
                         💊 {typeof prescription.medication_id === 'object' ? prescription.medication_id.name : 'Medication'} - {prescription.dosage || 'N/A'} (Qty: {prescription.quantity || 0})
                       </p>
                       {prescription.instructions && (
-                        <p className="text-xs text-gray-500 mt-1 italic">
+                        <p className="text-xs text-gray-500 mt-1 italic break-words">
                           Instructions: {prescription.instructions}
                         </p>
                       )}
@@ -721,44 +726,45 @@ export function PatientDashboard() {
                         </div>
                       )}
                       {isPending && (
-                        <p className="text-sm text-emerald-700 font-medium mt-2 bg-emerald-100 px-3 py-2 rounded">
+                        <p className="text-xs sm:text-sm text-emerald-700 font-medium mt-2 bg-emerald-100 px-2 sm:px-3 py-2 rounded break-words">
                           ⚡ Action Required: Please select a pharmacy to proceed with your prescription
                         </p>
                       )}
                       {prescription.status === 'pending' && prescription.pharmacy_id && (
-                        <p className="text-sm text-blue-600 font-medium mt-2">
+                        <p className="text-xs sm:text-sm text-blue-600 font-medium mt-2">
                           Price will be set by pharmacist after review
                         </p>
                       )}
                       {prescription.notes && (
-                        <p className="text-xs text-gray-500 mt-1 italic">
+                        <p className="text-xs text-gray-500 mt-1 italic break-words">
                           Notes: {prescription.notes}
                         </p>
                       )}
                       {prescription.pharmacy_id && prescription.pharmacy_id_populated && (
                         <div className="mt-2 p-2 bg-emerald-50 border border-emerald-200 rounded">
-                          <p className="text-xs text-emerald-700 font-medium">
+                          <p className="text-xs text-emerald-700 font-medium break-words">
                             <MapPin size={12} className="inline mr-1" />
                             Selected: {prescription.pharmacy_id_populated.name}
                           </p>
-                          <p className="text-xs text-emerald-600">
+                          <p className="text-xs text-emerald-600 break-words">
                             {prescription.pharmacy_id_populated.location}
                           </p>
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                     {prescription.status === 'pending' && !prescription.pharmacy_id ? (
                       <Button
                         size="sm"
                         onClick={() => handleSelectPharmacy(prescription)}
+                        className="w-full sm:w-auto"
                       >
                         <MapPin size={14} className="mr-1" />
                         Select Pharmacy
                       </Button>
                     ) : prescription.status === 'pending' && prescription.pharmacy_id ? (
-                      <span className="text-xs font-medium text-blue-600 bg-blue-50 px-3 py-2 rounded">
+                      <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 sm:px-3 py-2 rounded text-center sm:text-left">
                         Awaiting Pharmacist Review
                       </span>
                     ) : prescription.status === 'approved' ? (
@@ -768,32 +774,33 @@ export function PatientDashboard() {
                           setSelectedPrescription(prescription);
                           setShowPrescriptionPayment(true);
                         }}
+                        className="w-full sm:w-auto whitespace-nowrap"
                       >
                         Pay {insurance ? calculatePatientAmount(prescription.total_price).toFixed(0) : prescription.total_price} RWF
                       </Button>
                     ) : prescription.status === 'paid' ? (
-                      <span className="text-xs font-medium text-green-600 bg-green-50 px-3 py-2 rounded">
+                      <span className="text-xs font-medium text-green-600 bg-green-50 px-2 sm:px-3 py-2 rounded text-center sm:text-left">
                         Paid - Ready for Pickup
                       </span>
                     ) : prescription.status === 'completed' ? (
-                      <span className="text-xs font-medium text-green-600 bg-green-50 px-3 py-2 rounded border border-green-200">
+                      <span className="text-xs font-medium text-green-600 bg-green-50 px-2 sm:px-3 py-2 rounded border border-green-200 text-center sm:text-left">
                         ✓ Dispensed
                       </span>
                     ) : prescription.status === 'rejected' ? (
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium text-red-600 bg-red-50 px-3 py-2 rounded">
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <span className="text-xs font-medium text-red-600 bg-red-50 px-2 sm:px-3 py-2 rounded text-center sm:text-left">
                           Rejected
                         </span>
                         {prescription.rejection_reason && (
-                          <span className="text-xs text-red-700">Reason: {prescription.rejection_reason}</span>
+                          <span className="text-xs text-red-700 break-words">{prescription.rejection_reason}</span>
                         )}
-                        <Button size="sm" onClick={() => handleSelectPharmacy(prescription)}>
+                        <Button size="sm" onClick={() => handleSelectPharmacy(prescription)} className="w-full sm:w-auto">
                           <MapPin size={14} className="mr-1" />
                           Choose Another Pharmacy
                         </Button>
                       </div>
                     ) : (
-                      <span className="text-xs font-medium text-gray-600 bg-gray-50 px-3 py-2 rounded">
+                      <span className="text-xs font-medium text-gray-600 bg-gray-50 px-2 sm:px-3 py-2 rounded text-center sm:text-left">
                         {prescription.status}
                       </span>
                     )}
@@ -953,7 +960,7 @@ export function PatientDashboard() {
             </div>
           )}
 
-          <div className="flex gap-3 pt-4 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
             <Button
               variant="secondary"
               onClick={() => setShowInsuranceModal(false)}
